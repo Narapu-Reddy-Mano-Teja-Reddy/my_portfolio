@@ -1,37 +1,53 @@
-# 3D Portfolio Website
+# 🚀 3D AI Portfolio - Mano Teja Reddy
 
-![3D Portfolio](https://github.com/shridharrai/3D-Portfolio/assets/50835817/78d803d6-aaaf-492c-bf2a-30881e32bcf0)
+Welcome to the digital world of **Mano Teja Reddy**. This immersive portfolio showcases my journey as an **AI & Web Developer**, featuring cutting-edge 3D visuals, interactive elements, and AI-powered integration.
 
-Welcome to my captivating 3D portfolio website project! Harnessing the power of cutting-edge technologies, I've crafted a mesmerizing and responsive portfolio site that's not just visually stunning but also incredibly easy for anyone to personalize.
+![Portfolio Banner](https://github.com/Narapu-Reddy-Mano-Teja-Reddy/my_portfolio/assets/portfolio-banner-placeholder.png)
 
-## 🚀 Technologies Used
-- **Three.js**: The magic behind this project, a potent 3D graphics library.
-- **React Three Fiber**: Seamlessly integrate Three.js into React with this popular library.
-- **Tailwind CSS**: Elevate your design game with this utility-first CSS framework.
-- **Framer Motion**: Bring your website to life with captivating animations.
+## ✨ Features
 
-## ✨ Key Features
-- **Stunning 3D Models**: Load, create, and customize breathtaking 3D models and geometries.
-- **Lighting Magic**: Implement various lights to enhance the 3D visuals, creating a visually immersive experience.
-- **Perfect Positioning**: Navigate the 3D world effortlessly with a camera and precisely position objects in space.
-- **Scalable and Reusable**: Make your codebase highly reusable and scalable with Higher Order Components (HOCs) and industry-standard best practices.
-- **Stay Connected**: Enable visitors to reach out with an integrated contact form that sends emails directly from your website.
-- **Responsive Design**: Ensure your site looks fantastic on all devices, from desktops to smartphones.
-- **Optimized Performance**: Employ Suspense and Preload techniques to deliver a blazing-fast user experience.
+- **🌀 Interactive 3D World**: Built with **Three.js** and **React Three Fiber**, offering a stunning 3D computer model with dynamic lighting effects.
+- **🤖 AI Chatbot**: A custom AI assistant trained on my professional background to answer your questions instantly.
+- **📜 Certifications Showcase**: A dedicated section displaying verified certifications from Infosys, ISTE, and more, directly linked to LinkedIn.
+- **🌧️ Matrix Preloader**: A cinematic "digital rain" loading screen that sets a futuristic tone.
+- **💼 Global Hire Me**: A persistent, interactive "Hire Me" button with quick access to social profiles anywhere on the site.
+- **📱 Fully Responsive**: Optimized experience across desktop, tablet, and mobile devices.
 
-## 🌐 Live Demo
-Experience it in action! Check out the <a href="https://shridharportfolio.netlify.app/" target="_blank">Live Demo</a>.
+## 🛠️ Tech Stack
 
+- **Frontend**: React.js, Tailwind CSS
+- **3D Graphics**: Three.js, React Three Fiber, Driscoll
+- **Animations**: Framer Motion, GSAP
+- **Routing**: React Router Dom
+- **Icons**: React Icons, Lucide
 
-## 🛠️ Usage
-You can easily create your own 3-D portfolio website using this project as a template. Just follow these steps:
-1. Clone this repository.
-2. Navigate to the project directory.
-3. Run `npm install` to install dependencies.
-4. Modify the data in `src/constants/index.js` with your own content.
-5. Run `npm start` to start the development server.
+## 🚀 Getting Started
 
-Every piece of data on the website is dynamic and originates from the constants file. Simply change the data there, and you'll have your own stunning 3-D portfolio.
+To run this project locally:
 
-## 💡 Contributing
-Contributions are warmly welcomed! Whether you have suggestions, bug reports, or want to add new features, please don't hesitate to open an issue or create a pull request.
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Narapu-Reddy-Mano-Teja-Reddy/my_portfolio.git
+    cd my_portfolio
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+
+4.  Open `http://localhost:5173` in your browser.
+
+## 📬 Contact
+
+- **Email**: tejanarapureddy2@gmail.com
+- **LinkedIn**: [Mano Teja Reddy](https://www.linkedin.com/in/mano-teja-reddy-/)
+- **GitHub**: [Narapu-Reddy-Mano-Teja-Reddy](https://github.com/Narapu-Reddy-Mano-Teja-Reddy)
+
+---
+*Built with ❤️ by Mano Teja Reddy*
