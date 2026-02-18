@@ -223,19 +223,59 @@ const projects = [
 
 const certifications = [
   {
-    name: "Infosys Springboard Internship",
-    issuer: "Infosys",
+    name: "Introduction to Artificial Intelligence",
+    issuer: "Infosys Springboard",
     image: proximus,
   },
   {
-    name: "DeQualita India Internship",
-    issuer: "DeQualita",
-    image: nickelfox,
+    name: "Introduction to Natural Language Processing",
+    issuer: "Infosys Springboard",
+    image: proximus,
   },
   {
-    name: "ISTE Module Winner",
-    issuer: "ISTE",
-    image: crmnext,
+    name: "Data Science",
+    issuer: "Infosys Springboard",
+    image: proximus,
+  },
+  {
+    name: "Generative AI 1 with 101 Tools",
+    issuer: "LetsUpgrade",
+    image: creator,
+  },
+  {
+    name: "AI Tools Workshop",
+    issuer: "United Latino Students Association",
+    image: mobile,
+  },
+  {
+    name: "Introduction to Generative AI",
+    issuer: "National Skill Development Corporation",
+    image: backend,
+  },
+  {
+    name: "Career Edge Young Professional",
+    issuer: "Tata Consultancy Services",
+    image: web,
+  },
+  {
+    name: "Data Structures in C",
+    issuer: "Great Learning",
+    image: mobile,
+  },
+  {
+    name: "Introduction to Artificial Intelligence",
+    issuer: "Great Learning",
+    image: mobile,
+  },
+  {
+    name: "Java",
+    issuer: "MindLuster",
+    image: backend,
+  },
+  {
+    name: "Microsoft Certified: The Art of Networking",
+    issuer: "Microsoft",
+    image: web,
   },
 ];
 
