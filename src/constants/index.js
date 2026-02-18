@@ -237,6 +237,31 @@ const certifications = [
     issuer: "ISTE",
     image: crmnext,
   },
+  {
+    name: "Advanced Python Programming",
+    issuer: "Infosys Springboard",
+    image: backend,
+  },
+  {
+    name: "React - The Complete Guide",
+    issuer: "Udemy",
+    image: reactjs,
+  },
+  {
+    name: "Machine Learning A-Z",
+    issuer: "Kaggle",
+    image: mobile,
+  },
+  {
+    name: "Full Stack Web Development",
+    issuer: "Coursera",
+    image: web,
+  },
+  {
+    name: "Data Science Proficiency",
+    issuer: "DataCamp",
+    image: creator,
+  },
 ];
 
 const personalInfo = {
