@@ -39,6 +39,11 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
 
+  // Always start at the very top of the page on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <BrowserRouter>
       {/* Custom Global Cursor - Removed as per request */}

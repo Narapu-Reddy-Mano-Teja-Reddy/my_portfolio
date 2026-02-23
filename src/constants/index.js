@@ -290,8 +290,7 @@ const personalInfo = {
 };
 
 const publicUrls = {
-  resume:
-    "https://www.manotejareddy.xyz/static/assets/resume/resume.pdf",
+  resume: "/resume.pdf",
   socialProfiles: {
     linkedin: {
       title: "linkedin",
