@@ -53,8 +53,8 @@ const Navbar = () => {
           >
             <a
               href={publicUrls.resume}
-              download="Mano_Teja_Reddy_Resume.pdf"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Resume
             </a>
@@ -97,8 +97,8 @@ const Navbar = () => {
               >
                 <a
                   href={publicUrls.resume}
-                  download="Mano_Teja_Reddy_Resume.pdf"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Resume
                 </a>

@@ -144,6 +144,36 @@
   transform: translateZ(0);
 }
 
+/* ── Mobile improvements ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Prevent iOS auto-zoom on input focus (font-size must be >= 16px) */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* Remove tap highlight on mobile */
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Ensure sections don't overflow horizontally */
+  section {
+    overflow-x: hidden;
+  }
+}
+
+/* Smooth momentum scrolling on iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ──────────────────────────────────────────────────────────────────── */
+
 @keyframes mulShdSpin {
 
   0%,

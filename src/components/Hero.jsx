@@ -6,9 +6,10 @@ import { personalInfo } from "../constants";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto">
+    <section className="relative w-full h-screen mx-auto overflow-hidden">
+      {/* Text overlay */}
       <div
-        className={`${styles.paddingX} absolute inset-0 flex flex-row items-center justify-center gap-5 max-w-7xl mx-auto`}
+        className={`${styles.paddingX} absolute inset-0 flex flex-row items-center justify-center gap-5 max-w-7xl mx-auto top-[60px] sm:top-0`}
       >
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-electric-purple" />
@@ -21,14 +22,17 @@ const Hero = () => {
             <span className="text-electric-purple">{personalInfo.name}</span>
           </h1>
           <p className={`${styles.heroSubText} text-white-100 mt-2`}>
-            Building AI-powered digital products and <br className="sm:block hidden" />
+            Building AI-powered digital products and{" "}
+            <br className="sm:block hidden" />
             websites that scale globally.
           </p>
         </div>
       </div>
 
+      {/* 3D Canvas — full height behind text */}
       <ComputersCanvas />
 
+      {/* Scroll indicator */}
       <div className="absolute xs:bottom-2 bottom-12 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
