@@ -10,8 +10,6 @@ const Computers = ({ isMobile }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Randomly toggle lights or change intensity to simulate "different types of lights on and off"
-      // Sometimes bright, sometimes dim, sometimes off
       setLightIntensity(Math.random() * 2);
     }, 150);
     return () => clearInterval(interval);
@@ -20,7 +18,10 @@ const Computers = ({ isMobile }) => {
   return (
     <mesh>
       <hemisphereLight intensity={0.15} groundColor="black" />
-      <pointLight intensity={lightIntensity} color={lightIntensity > 1 ? "#00f5ff" : "#ffffff"} />
+      <pointLight
+        intensity={lightIntensity}
+        color={lightIntensity > 1 ? "#00f5ff" : "#ffffff"}
+      />
       <spotLight
         visible
         position={[-20, 50, 10]}
@@ -44,21 +45,15 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
     setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    const handleChange = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+
+  // On mobile: return null — Hero.jsx shows a fallback instead
+  if (isMobile) return null;
 
   return (
     <Canvas
@@ -73,9 +68,8 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={false} />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );

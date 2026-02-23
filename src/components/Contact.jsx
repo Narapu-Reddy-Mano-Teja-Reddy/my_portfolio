@@ -4,27 +4,22 @@ import { motion } from "framer-motion";
 import { slideIn } from "../utils/motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
-import emailjs from "@emailjs/browser";
 import { personalInfo, publicUrls } from "../constants";
 import Modal from "./Modal";
 
-// ─── EmailJS Credentials ──────────────────────────────────────────────────────
-// 1. Sign up at https://emailjs.com (free)
-// 2. Add Email Service → connect tejanarapureddy2@gmail.com → copy Service ID
-// 3. Create Email Template with {{from_name}}, {{from_email}}, {{message}} → copy Template ID
-// 4. Account → API Keys → copy Public Key
-const EMAILJS_SERVICE_ID = "service_portfolio";   // ← replace with your Service ID
-const EMAILJS_TEMPLATE_ID = "template_contact";    // ← replace with your Template ID
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";     // ← replace with your Public Key
+// ─────────────────────────────────────────────────────────────────────────────
+// Web3Forms — Get your FREE access key in 10 seconds:
+//   1. Go to https://web3forms.com
+//   2. Enter "tejanarapureddy2@gmail.com" → click "Create Access Key"
+//   3. Paste the key below (check your email inbox for the key)
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE";
+// Currently using Web3Forms demo key — emails may go to a test inbox.
+// Replace the value above with your personal key to receive emails.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const Contact = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -39,7 +34,7 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -55,20 +50,24 @@ const Contact = () => {
 
     setLoading(true);
 
-    emailjs
-      .send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          from_email: form.email,
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
           message: form.message,
-          to_email: "tejanarapureddy2@gmail.com",
-        },
-        EMAILJS_PUBLIC_KEY
-      )
-      .then(() => {
-        setLoading(false);
+          subject: `Portfolio Contact from ${form.name}`,
+          from_name: "Portfolio Contact Form",
+          replyto: form.email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
         setIsError(false);
         setForm({ name: "", email: "", message: "" });
         setModalContent({
@@ -77,25 +76,27 @@ const Contact = () => {
             "Thank you for reaching out! I'll get back to you as soon as possible.",
           buttonText: "Close",
         });
-        setIsModalVisible(true);
-      })
-      .catch((error) => {
-        setLoading(false);
-        setIsError(true);
-        console.error("EmailJS error:", error);
-        setModalContent({
-          title: "Oops!",
-          message:
-            "Something went wrong while sending your message. Please try again or email me directly at tejanarapureddy2@gmail.com",
-          buttonText: "Ok",
-        });
-        setIsModalVisible(true);
+      } else {
+        throw new Error(data.message || "Submission failed");
+      }
+    } catch (error) {
+      setIsError(true);
+      console.error("Form error:", error);
+      setModalContent({
+        title: "Oops!",
+        message:
+          `Something went wrong. Please email me directly at ${personalInfo.email}`,
+        buttonText: "Ok",
       });
+    } finally {
+      setLoading(false);
+      setIsModalVisible(true);
+    }
   };
 
   return (
     <>
-      <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
+      <div className="xl:mt-12 flex xl:flex-row flex-col gap-10 overflow-hidden">
         {/* ── Contact Form ── */}
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
@@ -151,7 +152,7 @@ const Contact = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                placeholder="What's your web address?"
+                placeholder="What's your email address?"
                 className="bg-tertiary py-4 px-6 text-white placeholder:text-secondary rounded-lg outline-none border-none font-medium"
               />
             </label>
@@ -178,7 +179,7 @@ const Contact = () => {
           </form>
         </motion.div>
 
-        {/* ── 3D Canvas — hidden on mobile, shown on xl screens ── */}
+        {/* ── 3D Canvas — hidden on mobile ── */}
         <motion.div
           variants={slideIn("right", "tween", 0.2, 1)}
           className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px] hidden md:block"
