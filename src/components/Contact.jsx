@@ -8,13 +8,10 @@ import { personalInfo, publicUrls } from "../constants";
 import Modal from "./Modal";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Web3Forms — Get your FREE access key in 10 seconds:
-//   1. Go to https://web3forms.com
-//   2. Enter "tejanarapureddy2@gmail.com" → click "Create Access Key"
-//   3. Paste the key below (check your email inbox for the key)
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE";
-// Currently using Web3Forms demo key — emails may go to a test inbox.
-// Replace the value above with your personal key to receive emails.
+// Paste your deployed Google Apps Script URL here (see README for setup steps)
+// After deploying, it looks like:
+// https://script.google.com/macros/s/XXXXXXXXXX/exec
+const FORM_ENDPOINT = "YOUR_GOOGLE_SCRIPT_URL_HERE";
 // ─────────────────────────────────────────────────────────────────────────────
 
 const Contact = () => {
@@ -51,41 +48,31 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // Plain JavaScript fetch — no third-party library at all
+      await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        mode: "no-cors",   // required for Google Apps Script
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
           name: form.name,
           email: form.email,
           message: form.message,
-          subject: `Portfolio Contact from ${form.name}`,
-          from_name: "Portfolio Contact Form",
-          replyto: form.email,
         }),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
-        setIsError(false);
-        setForm({ name: "", email: "", message: "" });
-        setModalContent({
-          title: "Message Sent! 🎉",
-          message:
-            "Thank you for reaching out! I'll get back to you as soon as possible.",
-          buttonText: "Close",
-        });
-      } else {
-        throw new Error(data.message || "Submission failed");
-      }
-    } catch (error) {
+      // no-cors means we can't read the response, so we assume success
+      setIsError(false);
+      setForm({ name: "", email: "", message: "" });
+      setModalContent({
+        title: "Message Sent! 🎉",
+        message: "Thank you for reaching out! I'll get back to you as soon as possible.",
+        buttonText: "Close",
+      });
+    } catch (err) {
       setIsError(true);
-      console.error("Form error:", error);
       setModalContent({
         title: "Oops!",
-        message:
-          `Something went wrong. Please email me directly at ${personalInfo.email}`,
+        message: `Something went wrong. Please email me directly at ${personalInfo.email}`,
         buttonText: "Ok",
       });
     } finally {
